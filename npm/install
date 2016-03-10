@@ -17,24 +17,17 @@ if typeExists "node"; then
 	p_success "nodejs is already installed. Continuing..."
 else
 	p_info "Installing nodejs..."
-	curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-	install "nodejs"
+
+	VERSION="4.4.0"
+	wget https://nodejs.org/dist/v$VERSION/node-v$VERSION-linux-x64.tar.xz
+	tar -xf node-v$VERSION-linux-x64.tar.xz && sudo cp -R node-v$VERSION-linux-x64/* /usr/
+	rm -r node-v$VERSION-linux-x64.tar.xz node-v$VERSION-linux-x64
 
 	if ! type_exists "node"; then
 		p_fail "Command 'node' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 		exit 1
 	fi
-fi
-
-#
-# Install npm if not already installed.
-#
-if typeExists "npm"; then
-	p_success "npm is already installed. Continuing..."
-else
-	p_info "Installing npm..."
-	curl https://www.npmjs.org/install.sh | sh
 
 	if ! typeExists "npm"; then
 		p_fail "Command 'npm' is still NOT in your path, you may need to restart your shell session and re-run this command."

@@ -25,7 +25,8 @@ else
 	if typeExists "php"; then
 		cd $DOT_DIR
 		curl -sS https://getcomposer.org/installer | php
-		mv $DOT_DIR/composer.phar $DOT_DIR/composer/src/composer.phar
+		mkdir -p $DOT_DIR/composer/src
+		mv $DOT_DIR/composer.phar $DOT_DIR/composer/src/
 		symlink "$DOT_DIR/composer/src/composer.phar" "/usr/bin/composer"
 
 		if ! typeExists "composer"; then
