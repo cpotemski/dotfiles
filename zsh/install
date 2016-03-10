@@ -35,7 +35,7 @@ fi
 
 #change default shell to zsh
 p_info "Change default shell to zsh. Please enter your sudo password."
-chsh -s `which zsh`
+sudo chsh -s `which zsh`
 
 #symlink config
 symlink "$DOT_DIR/zsh/.zshrc" "$HOME/.zshrc"
