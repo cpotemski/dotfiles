@@ -21,10 +21,10 @@ source $DOT_DIR/lib/utils/typeExists
 install() {
 	PACKAGE = "$1"
 	COMMAND = "$2"
-	if [ -z $COMMAND]
+	if [ -z $COMMAND]; then
 		COMMAND = $PACKAGE
 	fi
-	
+
 	if typeExists $COMMAND; then
 		p_success "Command '$COMMAND' is in your path. Continuing..."
 	else
