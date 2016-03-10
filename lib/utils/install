@@ -19,10 +19,10 @@ source $DOT_DIR/lib/utils/typography
 source $DOT_DIR/lib/utils/typeExists
 
 install() {
-	PACKAGE = "$1"
-	COMMAND = "$2"
+	PACKAGE="$1"
+	COMMAND="$2"
 	if [ -z $COMMAND]; then
-		COMMAND = $PACKAGE
+		COMMAND=$PACKAGE
 	fi
 
 	if typeExists $COMMAND; then
