@@ -17,8 +17,8 @@ if typeExists "storm"; then
 	p_success "storm is already installed. Continuing..."
 else
 	p_info "Installing storm..."
-		pip install stormssh
-	fi
+
+	pip install stormssh
 
 	p_success "storm installed successfully."
 fi
