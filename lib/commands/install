@@ -7,8 +7,6 @@
 #
 DOT_DIR="$HOME/.dotfiles"
 
-sudo apt-get update
-
 for file in $DOT_DIR/{git,python,zsh,composer,npm,atom,storm,z,prm,docker}/install; do
 	[ -r "$file" ] && [ -f "$file" ] && . "$file";
 done;
