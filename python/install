@@ -35,12 +35,11 @@ if typeExists "pip"; then
 	p_success "pip is already installed. Continuing..."
 else
 	p_info "Installing pip..."
-		install "python-pip"
+	install "python-pip" "pip"
 
-		if ! type_exists "pip"; then
-			p_fail "Command 'pip' is still NOT in your path, you may need to restart your shell session and re-run this command."
+	if ! type_exists "pip"; then
+		p_fail "Command 'pip' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
-			exit 1
-		fi
+		exit 1
 	fi
 fi

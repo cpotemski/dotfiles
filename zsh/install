@@ -20,7 +20,7 @@ else
 	p_info "Installing zsh..."
 
   install "zsh"
-	install "git-core"
+	install "git"
   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 

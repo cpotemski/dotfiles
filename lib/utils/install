@@ -19,12 +19,16 @@ source $DOT_DIR/lib/utils/typography
 source $DOT_DIR/lib/utils/typeExists
 
 install() {
-	if typeExists $1; then
-		p_success "Command '$1' is in your path. Continuing..."
+	PACKAGE = "$1"
+	COMMAND = "$2"
+	if [! -z $COMMAND]
+		COMMAND = $PACKAGE
+	if typeExists $COMMAND; then
+		p_success "Command '$COMMAND' is in your path. Continuing..."
 	else
 		# Install the dependency
 		if typeExists "apt-get"; then
-			sudo apt-get install -y $1
+			sudo apt-get install -y PACKAGE
 			INSTALL_EXIT_CODE=$?
 		elif typeExists "brew"; then
 			brew install $1
@@ -40,10 +44,10 @@ install() {
 		fi
 
 		# Afterwards, check if the installation was successfull.
-		if typeExists $1; then
-			p_success "Command '$1' is in your path. Continuing..."
+		if typeExists $COMMAND; then
+			p_success "Command '$COMMAND' is in your path. Continuing..."
 		else
-			p_fail "Command '$1' is still NOT in your path, you may need to restart your shell session to continue."
+			p_fail "Command '$COMMAND' is still NOT in your path, you may need to restart your shell session to continue."
 			exit 1
 		fi
 	fi
