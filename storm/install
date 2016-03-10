@@ -18,7 +18,7 @@ if typeExists "storm"; then
 else
 	p_info "Installing storm..."
 
-	pip install stormssh
+	sudo pip install stormssh
 
 	p_success "storm installed successfully."
 fi
