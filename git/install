@@ -9,19 +9,26 @@ DOT_DIR="$HOME/.dotfiles"
 
 source $DOT_DIR/lib/utils/install
 source $DOT_DIR/lib/utils/symlink
-source $DOT_DIR/lib/constants/os
 source $DOT_DIR/lib/utils/typography
 
-#
-# Install the binary if not already installed.
-#
-install "git"
+if typeExists "git"; then
+	p_success "git is already installed. Continuing..."
+else
 
-#
-# Symlink/create the global configuration.
-#
-p_info "Symlinking the global .gitconfig..."
-symlink "$DOT_DIR/git/.gitconfig" "$HOME/.gitconfig"
+  install "git"
 
-p_info "Symlinking the global .gitignore..."
-symlink "$DOT_DIR/git/.gitignore" "$HOME/.gitignore"
+	if ! typeExists "git"; then
+		p_fail "Command 'git' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+
+  # Symlink/create the global configuration.
+  #
+  p_info "Symlinking the global .gitconfig..."
+  symlink "$DOT_DIR/git/.gitconfig" "$HOME/.gitconfig"
+
+  p_info "Symlinking the global .gitignore..."
+  symlink "$DOT_DIR/git/.gitignore" "$HOME/.gitignore"
+
+fi

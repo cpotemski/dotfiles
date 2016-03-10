@@ -26,13 +26,14 @@ else
 
 		exit 1
 	fi
+
+	#
+	# Symlink/create the global configuration.
+	#
+	mkdir -p "$HOME/.atom"
+
+	p_info "Installing the global atom configuration..."
+	symlink "$DOT_DIR/atom/config.cson" "$HOME/.atom/config.cson"
+	symlink "$DOT_DIR/atom/snippets.cson" "$HOME/.atom/snippets.cson"
+
 fi
-
-#
-# Symlink/create the global configuration.
-#
-mkdir -p "$HOME/.atom"
-
-p_info "Installing the global atom configuration..."
-symlink "$DOT_DIR/atom/config.cson" "$HOME/.atom/config.cson"
-symlink "$DOT_DIR/atom/snippets.cson" "$HOME/.atom/snippets.cson"

@@ -115,9 +115,9 @@ alias glg='git lg'
 alias ll='ls -lah'
 alias cl='clear'
 
-alias prm='. $HOME/bin/prm/prm.sh'
+alias prm='. $DOT_DIR/prm/src/prm.sh'
 
 # -------------------------------------------------------------------
 # Init scripts
 # -------------------------------------------------------------------
-. $HOME/bin/z/z.sh
+. $DOT_DIR/z/src/z.sh
