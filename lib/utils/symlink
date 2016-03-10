@@ -26,7 +26,7 @@ symlink() {
 				p_warn "File '$2' is not a symbolic link, you may want to remove this file and re-run this script."
 		fi
 	else
-		ln -s "$1" "$2"
+		sudo ln -s "$1" "$2"
 
 		if isFileSymlink "$2"; then
 			p_success "Successfully linked '$2' to '$1'."
