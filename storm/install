@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#
+# Installs the storm ssh-manager binary.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install storm if not already installed.
+#
+if typeExists "storm"; then
+	p_success "storm is already installed. Continuing..."
+else
+	p_info "Installing storm..."
+		pip install stormssh
+	fi
+
+	p_success "storm installed successfully."
+fi

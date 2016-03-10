@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+#
+# Install npm
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install nodejs if not already installed.
+#
+if typeExists "node"; then
+	p_success "nodejs is already installed. Continuing..."
+else
+	p_info "Installing nodejs..."
+	curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+	install "nodejs"
+
+	if ! type_exists "node"; then
+		p_fail "Command 'node' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
+
+#
+# Install npm if not already installed.
+#
+if typeExists "npm"; then
+	p_success "npm is already installed. Continuing..."
+else
+	p_info "Installing npm..."
+	curl https://www.npmjs.org/install.sh | sh
+
+	if ! type_exists "npm"; then
+		p_fail "Command 'npm' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
+
+#
+# Symlink the global configuration file.
+#
+p_info "Symlinking the global .npmrc file..."
+symlink "$DOT_DIR/npm/.npmrc" "$HOME/.npmrc"
+
+#
+# Install global npm packages.
+#
+p_info "Installing the global npm packages..."
+npm install -g grunt-cli gulp

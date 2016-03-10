@@ -1,0 +1,6 @@
+# https://github.com/bevry/cson#what-is-cson
+
+'.source.js':
+  'console.log':
+    'prefix': 'log'
+    'body': 'console.log(${1:var})$2'

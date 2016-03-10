@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#
+# Installs Atom if needed and Symlinks the atom configuration files.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/symlink
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/fileExists
+
+
+if typeExists "atom"; then
+	p_success "atom is already installed. Continuing..."
+else
+	URL='https://atom.io/download/deb';
+	FILE=`atom`;
+	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
+	rm $FILE
+
+	if ! type_exists "atom"; then
+		p_fail "Command 'atom' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
+
+#
+# Symlink/create the global configuration.
+#
+mkdir -p "$HOME/.atom"
+
+p_info "Installing the global atom configuration..."
+symlink "$DOT_DIR/atom/config.cson" "$HOME/.atom/config.cson"
+symlink "$DOT_DIR/atom/snippets.cson" "$HOME/.atom/snippets.cson"

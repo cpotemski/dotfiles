@@ -1,0 +1,31 @@
+"*":
+  "autocomplete-plus": {}
+  core:
+    autoHideMenuBar: true
+    themes: [
+      "atom-material-ui"
+      "atom-material-syntax"
+    ]
+  editor:
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+  emmet: {}
+  "exception-reporting":
+    userId: "96a08559-cbae-3d73-1173-025270099a81"
+  jshint:
+    supportLintingJsx: true
+  "linter-eslint": {}
+  "markdown-preview": {}
+  "sync-settings":
+    _analyticsUserId: "7164dc49-bce8-49fd-846d-afdfadc8e03c"
+    _lastBackupHash: "4ff3691215ac1d8963075faa26eb862e13bca034"
+    gistId: "7eebb8b2df00d21d310d"
+    personalAccessToken: "095be25bf2626fbb614c451c346689bcad29125a"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
+".html.php.text":
+  editor:
+    autoIndentOnPaste: true

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+#
+# Install composer.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/install
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install zsh if not already installed.
+#
+if typeExists "zsh"; then
+	p_success "zsh is already installed. Continuing..."
+else
+	p_info "Installing zsh..."
+
+  install "zsh"
+	install "git-core"
+  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+
+
+  if ! type_exists "zsh"; then
+    p_fail "Command 'zsh' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+    exit 1
+  fi
+
+  p_success "zsh installation successful - reboot needed"
+fi
+
+#change default shell to zsh
+chsh -s `which zsh`
+
+#symlink config
+symlink "$DOT_DIR/zsh/.zshrc" "$HOME/.zshrc"

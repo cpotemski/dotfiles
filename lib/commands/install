@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#
+# Installs all dependencies and optional tools.
+#
+# Author: Tyll Weiß <inkdpixels@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+for file in $DOT_DIR/{git,python,zsh,composer,npm,atom,storm,z,prm,docker}/install; do
+	[ -r "$file" ] && [ -f "$file" ] && . "$file";
+done;
+unset file;

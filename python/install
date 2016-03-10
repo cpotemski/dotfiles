@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+#
+# Installs python and pip.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install python if not already installed.
+#
+if typeExists "python"; then
+	p_success "python is already installed. Continuing..."
+else
+	p_info "Installing python..."
+		curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+		pyenv install 2.7.8
+		pyenv rehash
+
+		if ! type_exists "python"; then
+			p_fail "Command 'python' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+			exit 1
+		fi
+	fi
+fi
+
+#
+# Install pip if not already installed.
+#
+if typeExists "pip"; then
+	p_success "pip is already installed. Continuing..."
+else
+	p_info "Installing pip..."
+		install "python-pip"
+
+		if ! type_exists "pip"; then
+			p_fail "Command 'pip' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+			exit 1
+		fi
+	fi
+fi
