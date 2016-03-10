@@ -11,7 +11,7 @@ source $DOT_DIR/lib/constants/profile
 
 if [ ! -z $DETECTED_PROFILE ]; then
 	echo "Installing the dot CLI into $DETECTED_PROFILE..."
-	echo "export PATH=$PATH:`pwd/bin`" >> $DETECTED_PROFILE && source $DETECTED_PROFILE
+	echo "export PATH=$PATH:`pwd`/bin" >> $DETECTED_PROFILE && source $DETECTED_PROFILE
 	echo "Success. Type in 'dot help' to get started."
 	exit 0
 fi

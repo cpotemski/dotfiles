@@ -24,7 +24,7 @@ install() {
 	else
 		# Install the dependency
 		if typeExists "apt-get"; then
-			apt-get install -y $1
+			sudo apt-get install -y $1
 			INSTALL_EXIT_CODE=$?
 		elif typeExists "brew"; then
 			brew install $1

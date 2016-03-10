@@ -17,15 +17,14 @@ if typeExists "python"; then
 	p_success "python is already installed. Continuing..."
 else
 	p_info "Installing python..."
-		curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-		pyenv install 2.7.8
-		pyenv rehash
+	curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+	pyenv install 2.7.8
+	pyenv rehash
 
-		if ! type_exists "python"; then
-			p_fail "Command 'python' is still NOT in your path, you may need to restart your shell session and re-run this command."
+	if ! type_exists "python"; then
+		p_fail "Command 'python' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
-			exit 1
-		fi
+		exit 1
 	fi
 fi
 
