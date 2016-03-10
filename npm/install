@@ -19,7 +19,7 @@ else
 	p_info "Installing nodejs..."
 
 	VERSION="4.4.0"
-	wget https://nodejs.org/dist/v$VERSION/node-v$VERSION-linux-x64.tar.xz
+	wget https://nodejs.org/dist/v$VERSION/node-v$VERSION-linux-x64.tar.xz -q
 	tar -xf node-v$VERSION-linux-x64.tar.xz && sudo cp -R node-v$VERSION-linux-x64/* /usr/
 	rm -r node-v$VERSION-linux-x64.tar.xz node-v$VERSION-linux-x64
 
@@ -46,4 +46,4 @@ symlink "$DOT_DIR/npm/.npmrc" "$HOME/.npmrc"
 # Install global npm packages.
 #
 p_info "Installing the global npm packages..."
-npm install -g grunt-cli gulp
+sudo npm install -g grunt-cli gulp

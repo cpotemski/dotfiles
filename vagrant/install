@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+#
+# Install vagrant and virtualbox
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install vagrant if not already installed.
+#
+if typeExists "vagrant"; then
+	p_success "vagrant is already installed. Continuing..."
+else
+	URL='https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb';
+	FILE=`vagrant`;
+	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
+	rm $FILE
+
+	if ! typeExists "vagrant"; then
+		p_fail "Command 'vagrant' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
+
+
+# Install virtualbox if not already installed.
+#
+if typeExists "virtualbox"; then
+	p_success "virtualbox is already installed. Continuing..."
+else
+	URL='http://download.virtualbox.org/virtualbox/5.0.16/virtualbox-5.0_5.0.16-105871~Ubuntu~trusty_amd64.deb';
+	FILE=`virtualbox`;
+	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
+	rm $FILE
+
+	if ! typeExists "virtualbox"; then
+		p_fail "Command 'virtualbox' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
