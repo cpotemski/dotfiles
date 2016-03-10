@@ -20,8 +20,12 @@ else
 
 	install "php5-common libapache2-mod-php5 php5-cli" "php"
 
+	install "curl"
+
 	if typeExists "php"; then
 		curl -sS https://getcomposer.org/installer | php
+		mv $HOME/composer.phar $DOT_DIR/composer/src/composer.phar
+		symlink "$DOT_DIR/composer/src/composer.phar" "/usr/bin/composer"
 
 		if ! typeExists "composer"; then
 			p_fail "Command 'composer' is still NOT in your path, you may need to restart your shell session and re-run this command."
