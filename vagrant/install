@@ -17,7 +17,7 @@ if typeExists "vagrant"; then
 	p_success "vagrant is already installed. Continuing..."
 else
 	URL='https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb';
-	FILE=`vagrant`;
+	FILE="vagrant_tmp";
 	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
 	rm $FILE
 
@@ -35,7 +35,7 @@ if typeExists "virtualbox"; then
 	p_success "virtualbox is already installed. Continuing..."
 else
 	URL='http://download.virtualbox.org/virtualbox/5.0.16/virtualbox-5.0_5.0.16-105871~Ubuntu~trusty_amd64.deb';
-	FILE=`virtualbox`;
+	FILE="virtualbox_tmp";
 	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
 	rm $FILE
 

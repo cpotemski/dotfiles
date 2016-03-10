@@ -23,7 +23,7 @@ else
 	tar -xf node-v$VERSION-linux-x64.tar.xz && sudo cp -R node-v$VERSION-linux-x64/* /usr/
 	rm -r node-v$VERSION-linux-x64.tar.xz node-v$VERSION-linux-x64
 
-	if ! type_exists "node"; then
+	if ! typeExists "node"; then
 		p_fail "Command 'node' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 		exit 1

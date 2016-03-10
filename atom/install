@@ -17,7 +17,7 @@ if typeExists "atom"; then
 	p_success "atom is already installed. Continuing..."
 else
 	URL='https://atom.io/download/deb';
-	FILE=`atom`;
+	FILE='atom_tmp';
 	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
 	rm $FILE
 
