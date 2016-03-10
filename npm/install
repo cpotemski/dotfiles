@@ -34,16 +34,17 @@ else
 
 		exit 1
 	fi
+
+	#
+	# Symlink the global configuration file.
+	#
+	p_info "Symlinking the global .npmrc file..."
+	symlink "$DOT_DIR/npm/.npmrc" "$HOME/.npmrc"
+
+	#
+	# Install global npm packages.
+	#
+	p_info "Installing the global npm packages..."
+	sudo npm install -g grunt-cli gulp
+
 fi
-
-#
-# Symlink the global configuration file.
-#
-p_info "Symlinking the global .npmrc file..."
-symlink "$DOT_DIR/npm/.npmrc" "$HOME/.npmrc"
-
-#
-# Install global npm packages.
-#
-p_info "Installing the global npm packages..."
-sudo npm install -g grunt-cli gulp

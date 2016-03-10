@@ -18,11 +18,12 @@ if typeExists "docker"; then
 else
 	install "curl"
 	curl -fsSL https://get.docker.com/ | sh
+	sudo usermod -aG docker $USER
 
 	if ! typeExists "docker"; then
-		p_fail "Command 'docker' is still NOT in your path, you may need to restart your shell session and re-run this command."
+		p_fail "Command 'docker' is still NOT in your path, you may need to restart your computer."
 
-		exit 1
+#		exit 1
 	fi
 fi
 
@@ -32,12 +33,13 @@ fi
 if typeExists "docker-compose"; then
 	p_success "docker-compose is already installed. Continuing..."
 else
-	curl -L https://github.com/docker/compose/releases/download/1.6.2/run.sh > /usr/local/bin/docker-compose
-	chmod +x /usr/local/bin/docker-compose
+	curl -L https://github.com/docker/compose/releases/download/1.6.2/run.sh > ./docker-compose
+	sudo mv ./docker-compose /usr/bin/docker-compose
+	sudo chmod +x /usr/bin/docker-compose
 
 	if ! typeExists "docker-compose"; then
-		p_fail "Command 'docker-compose' is still NOT in your path, you may need to restart your shell session and re-run this command."
+		p_fail "Command 'docker-compose' is still NOT in your path, you may need to restart your computer."
 
-		exit 1
+#		exit 1
 	fi
 fi
