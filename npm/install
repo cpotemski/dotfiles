@@ -36,7 +36,7 @@ else
 	p_info "Installing npm..."
 	curl https://www.npmjs.org/install.sh | sh
 
-	if ! type_exists "npm"; then
+	if ! typeExists "npm"; then
 		p_fail "Command 'npm' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 		exit 1

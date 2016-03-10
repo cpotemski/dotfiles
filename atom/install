@@ -10,6 +10,7 @@ DOT_DIR="$HOME/.dotfiles"
 source $DOT_DIR/lib/utils/symlink
 source $DOT_DIR/lib/utils/typography
 source $DOT_DIR/lib/utils/fileExists
+source $DOT_DIR/lib/utils/typeExists
 
 
 if typeExists "atom"; then
@@ -20,7 +21,7 @@ else
 	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
 	rm $FILE
 
-	if ! type_exists "atom"; then
+	if ! typeExists "atom"; then
 		p_fail "Command 'atom' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 		exit 1

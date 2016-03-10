@@ -24,7 +24,7 @@ else
   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
 
-  if ! type_exists "zsh"; then
+  if ! typeExists "zsh"; then
     p_fail "Command 'zsh' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
     exit 1
@@ -34,6 +34,7 @@ else
 fi
 
 #change default shell to zsh
+p_info "Change default shell to zsh. Please enter your sudo password."
 chsh -s `which zsh`
 
 #symlink config

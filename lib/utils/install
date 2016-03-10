@@ -21,7 +21,7 @@ source $DOT_DIR/lib/utils/typeExists
 install() {
 	PACKAGE="$1"
 	COMMAND="$2"
-	if [ -z $COMMAND]; then
+	if [ -z $COMMAND ]; then
 		COMMAND=$PACKAGE
 	fi
 
@@ -30,7 +30,7 @@ install() {
 	else
 		# Install the dependency
 		if typeExists "apt-get"; then
-			sudo apt-get install -y PACKAGE
+			sudo apt-get install -y $PACKAGE
 			INSTALL_EXIT_CODE=$?
 		elif typeExists "brew"; then
 			brew install $1

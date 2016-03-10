@@ -37,7 +37,7 @@ else
 	p_info "Installing pip..."
 	install "python-pip" "pip"
 
-	if ! type_exists "pip"; then
+	if ! typeExists "pip"; then
 		p_fail "Command 'pip' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 		exit 1

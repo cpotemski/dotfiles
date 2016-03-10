@@ -17,10 +17,13 @@ if typeExists "composer"; then
 	p_success "composer is already installed. Continuing..."
 else
 	p_info "Installing composer..."
-	if type_exists "php"; then
+
+	install "php5-common libapache2-mod-php5 php5-cli" "php"
+
+	if typeExists "php"; then
 		curl -sS https://getcomposer.org/installer | php
 
-		if ! type_exists "composer"; then
+		if ! typeExists "composer"; then
 			p_fail "Command 'composer' is still NOT in your path, you may need to restart your shell session and re-run this command."
 
 			exit 1
