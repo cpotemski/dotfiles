@@ -118,6 +118,63 @@ alias cl='clear'
 alias prm='. $DOT_DIR/prm/src/prm.sh'
 
 # -------------------------------------------------------------------
+# functions
+# -------------------------------------------------------------------
+
+function unadd {
+  git rm --cached $1
+}
+
+function rdp {
+  if [ ! $1 ]
+  then
+    echo "Usage: rdp <host> [user] [resolution]"
+    echo "       default user: 'SITEGEIST\\Administrator'"
+    echo "       default resolution: '1920x1000'"
+  else
+    host="$1"
+    if [ ! $2 ]
+    then
+      user="SITEGEIST\\Administrator"
+    else
+      user="$2"
+    fi
+
+    if [ ! $3 ]
+    then
+      resolution="1920x1000"
+    else
+      resolution="$3"
+    fi
+
+    rdesktop -u $user -p - -g $resolution -z $host -k de
+  fi
+}
+
+function extract {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2)  tar -jxvf "$1"                        ;;
+      *.tar.gz)   tar -zxvf "$1"                        ;;
+      *.bz2)      bunzip2 "$1"                          ;;
+      *.dmg)      hdiutil mount "$1"                    ;;
+      *.gz)       gunzip "$1"                           ;;
+      *.tar)      tar -xvf "$1"                         ;;
+      *.tbz2)     tar -jxvf "$1"                        ;;
+      *.tgz)      tar -zxvf "$1"                        ;;
+      *.zip)      unzip "$1"                            ;;
+      *.ZIP)      unzip "$1"                            ;;
+      *.pax)      cat "$1" | pax -r                     ;;
+      *.pax.Z)    uncompress "$1" --stdout | pax -r     ;;
+      *.Z)        uncompress "$1"                       ;;
+      *) echo "'$1' cannot be extracted/mounted via extract()" ;;
+    esac
+  else
+     echo "'$1' is not a valid file to extract"
+  fi
+}
+
+# -------------------------------------------------------------------
 # Init scripts
 # -------------------------------------------------------------------
 . $DOT_DIR/z/src/z.sh

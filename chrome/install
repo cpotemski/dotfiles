@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+#
+# Installs Chrome if needed.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/symlink
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/fileExists
+source $DOT_DIR/lib/utils/typeExists
+
+
+if typeExists "google-chrome"; then
+	p_success "chrome is already installed. Continuing..."
+else
+	URL='https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb';
+	FILE='chrome_tmp';
+	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
+	rm $FILE
+
+	if ! typeExists "google-chrome"; then
+		p_fail "Command 'google-chrome' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi
