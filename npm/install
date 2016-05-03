@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Install npm
+# Install nvm, node and npm
 #
 # Author: Christian Potemski <c.potemski@gmail.com>
 #
@@ -13,15 +13,19 @@ source $DOT_DIR/lib/utils/typeExists
 #
 # Install nodejs if not already installed.
 #
-if typeExists "node"; then
-	p_success "nodejs is already installed. Continuing..."
+if typeExists "nvm"; then
+	p_success "nvm is already installed. Continuing..."
 else
-	p_info "Installing nodejs..."
+	p_info "Installing nvm..."
 
-	VERSION="4.4.0"
-	wget https://nodejs.org/dist/v$VERSION/node-v$VERSION-linux-x64.tar.xz -q
-	tar -xf node-v$VERSION-linux-x64.tar.xz && sudo cp -R node-v$VERSION-linux-x64/* /usr/
-	rm -r node-v$VERSION-linux-x64.tar.xz node-v$VERSION-linux-x64
+	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+
+	# make nvm available
+	. ~/.nvm/nvm.sh
+
+	VERSION="4.4"
+	nvm install $VERSION
+	nvm use $VERSION
 
 	if ! typeExists "node"; then
 		p_fail "Command 'node' is still NOT in your path, you may need to restart your shell session and re-run this command."
