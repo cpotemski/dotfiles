@@ -49,6 +49,6 @@ else
 	# Install global npm packages.
 	#
 	p_info "Installing the global npm packages..."
-	sudo npm install -g grunt-cli gulp
+	sudo npm install -g grunt-cli gulp ngrok supercat
 
 fi

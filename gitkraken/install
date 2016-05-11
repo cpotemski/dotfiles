@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+#
+# Installs gitkraken if needed.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+
+if typeExists "gitkraken"; then
+	p_success "chrome is already installed. Continuing..."
+else
+	URL='https://release.gitkraken.com/linux/gitkraken-amd64.deb';
+	FILE='kraken_tmp';
+	wget "$URL" -qO $FILE && sudo dpkg -i $FILE;
+	rm $FILE
+
+	if ! typeExists "gitkraken"; then
+		p_fail "Command 'gitkraken' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi

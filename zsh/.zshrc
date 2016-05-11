@@ -116,6 +116,7 @@ alias ll='ls -lah'
 alias cl='clear'
 
 alias prm='. $DOT_DIR/prm/src/prm.sh'
+alias cat='scat'
 
 # -------------------------------------------------------------------
 # functions
@@ -178,3 +179,6 @@ function extract {
 # Init scripts
 # -------------------------------------------------------------------
 . $DOT_DIR/z/src/z.sh
+
+export NVM_DIR="/home/chris/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

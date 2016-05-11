@@ -20,5 +20,9 @@ else
 
 	sudo pip install stormssh
 
-	p_success "storm installed successfully."
+	if ! typeExists "storm"; then
+		p_fail "Command 'storm' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
 fi

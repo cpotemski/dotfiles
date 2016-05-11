@@ -2,8 +2,7 @@
 .last_modified
 test_working_dir/
 tests/output/*.result.txt
+prm/projects/.*.tmp
 
 # External sources which shouldn't be committed.
-z/src/
-prm/src/
-composer/src/
+src/
