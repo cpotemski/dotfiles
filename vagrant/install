@@ -57,3 +57,4 @@ else
 	sh ./setup.sh
 	cd $HOME/sitegeist/Deployment/Surf/
 	composer install
+fi
