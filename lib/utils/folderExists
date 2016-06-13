@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+#
+# A helper function which tests if a folder exists.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+# Arguments:
+# $1 The filepath to check.
+#
+# Usage:
+# if folderExists "$HOME/folder"; then
+#		echo "Folder '$HOME/folder' exists."
+# fi
+#
+folderExists() {
+	if [ -d $1 ]; then
+		return 0
+	else
+		return 1
+	fi
+}

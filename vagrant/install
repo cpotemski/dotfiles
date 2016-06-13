@@ -7,6 +7,7 @@
 #
 DOT_DIR="$HOME/.dotfiles"
 
+source $DOT_DIR/lib/utils/folderExists
 source $DOT_DIR/lib/utils/typography
 source $DOT_DIR/lib/utils/typeExists
 
@@ -45,3 +46,14 @@ else
 		exit 1
 	fi
 fi
+
+# Install sitegeist tools package
+if folderExists "$HOME/sitegeist"; then
+	p_success "sitegeist package already installed. Continuing..."
+else
+	cd $HOME
+	git clone ssh://git@git.sitegeist.de:40022/biege/Tools.git sitegeist
+	cd $HOME/sitegeist
+	sh ./setup.sh
+	cd $HOME/sitegeist/Deployment/Surf/
+	composer install
