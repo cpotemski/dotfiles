@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#
+# Installs the ngrok binary.
+#
+# Author: Christian Potemski <c.potemski@gmail.com>
+#
+DOT_DIR="$HOME/.dotfiles"
+
+source $DOT_DIR/lib/utils/typography
+source $DOT_DIR/lib/utils/typeExists
+
+#
+# Install ngrok if not already installed.
+#
+if typeExists "ngrok"; then
+	p_success "ngrok is already installed. Continuing..."
+else
+	p_info "Installing ngrok..."
+
+	cd $DOT_DIR
+
+	URL='https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip';
+	FILE="ngrok_tmp";
+	wget "$URL" -qO $FILE && unzip $FILE;
+	rm $FILE
+
+	mkdir -p $DOT_DIR/ngrok/src
+	mv $DOT_DIR/ngrok $DOT_DIR/ngrok/src/
+	symlink "$DOT_DIR/ngrok/src/ngrok" "/usr/bin/ngrok"
+
+	if ! typeExists "ngrok"; then
+		p_fail "Command 'ngrok' is still NOT in your path, you may need to restart your shell session and re-run this command."
+
+		exit 1
+	fi
+fi

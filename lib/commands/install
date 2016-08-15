@@ -7,7 +7,7 @@
 #
 DOT_DIR="$HOME/.dotfiles"
 
-for file in $DOT_DIR/{git,python,zsh,composer,npm,atom,storm,z,prm,docker,vagrant,chrome,gitkraken}/install; do
+for file in $DOT_DIR/{git,python,zsh,composer,npm,atom,ngrok,z,docker,vagrant,chrome,gitkraken}/install; do
 	[ -r "$file" ] && [ -f "$file" ] && . "$file";
 done;
 unset file;

@@ -3,17 +3,22 @@
 #
 # Installation script for the dot CLI.
 #
-# Authors: Tyll Weiß <inkdpixels@gmail.com>
+# Authors: Christian Potemski <c.potemski@gmail.com>
 #
 DOT_DIR="$HOME/.dotfiles"
 
 source $DOT_DIR/lib/constants/profile
 
+# repos
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo add-apt-repository ppa:shutter/ppa
+
 # install prerequisites
 sudo apt-get update
 sudo apt-get upgrade -y
 
-sudo apt-get install -y git nfs-kernel-server nfs-common rpcbind mysql-server php5 php5-cli php5-gd php5-common php5-mysql gcc imagemagick php5-imagick curl
+sudo apt-get install -y git nfs-kernel-server nfs-common rpcbind mysql-server php5 php5-cli php5-gd php5-common php5-mysql gcc imagemagick php5-imagick curl spotify-client shutter
 
 sudo apt-get install -f -y
 
